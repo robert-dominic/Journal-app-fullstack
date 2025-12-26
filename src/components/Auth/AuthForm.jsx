@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useAuth } from '../../contexts/AuthContext'
 
-export default function AuthForm({ onSuccess, onClose }) {
+export default function AuthForm({ onSuccess }) {
   const [mode, setMode] = useState("signin")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
