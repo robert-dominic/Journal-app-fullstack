@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { BookOpen, Zap, Cloud, Lock } from "lucide-react"
+import { Zap, Cloud, Lock } from "lucide-react"
 import AuthModal from "../components/Auth/AuthModal"
 import HomeHeader from "../components/Layout/HomeHeader"
 
