@@ -1,7 +1,7 @@
 import { useAuth } from "../../contexts/AuthContext";
 import { BookOpen, UserCircle } from "lucide-react";
 
-export default function JournalHeader({ onSignUp }) {
+export default function JournalHeader() {
 
   const { user } = useAuth();
 
@@ -30,12 +30,6 @@ export default function JournalHeader({ onSignUp }) {
                   <span className="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-lg">
                     Guest Mode
                   </span>
-                  <button
-                    onClick={onSignUp}
-                    className="px-4 py-2 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-700 transition-colors"
-                  >
-                    Sign Up
-                  </button>
                 </div>
               )}
             </div>
