@@ -3,18 +3,26 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useEntries } from "../contexts/EntriesContext"
 import AuthModal from "../components/Auth/AuthModal"
 import JournalHeader from '../components/Layout/JournalHeader'
+import EntryList from "../components/Journal/EntryList"
 import { PenLine } from 'lucide-react'
 
 export default function Journal() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const navigate = useNavigate()
   const { user } = useAuth()
+  const { entries, loading } = useEntries()
 
 
   const handleAuthSuccess = () => {
     setIsAuthModalOpen(false)
+  }
+
+  const handleEntryClick = (entry) => {
+    // TODO: I'll navigate to the entry detail page 
+    console.log('Entry clicked:', entry)
   }
 
   return (
@@ -25,14 +33,37 @@ export default function Journal() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900">My Journal</h2>
-          <p className="text-gray-600 mt-1">Your thoughts, beautifully organized</p>
+          <p className="text-gray-600 mt-1">
+            {user 
+              ? 'Your thoughts, beautifully organized'
+              : 'Writing in guest mode - sign up to save permanently'
+            }
+          </p>
         </div>
 
+        {/* Guest Mode Banner */}
+        {!user && entries.length > 0 && (
+          <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-yellow-800 text-sm">
+              📝 You have <strong>{entries.length}</strong> {entries.length === 1 ? 'entry' : 'entries'} saved locally. 
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="ml-2 text-orange-600 font-medium hover:underline"
+              >
+                Sign up to sync across devices
+              </button>
+            </p>
+          </div>
+        )}
+
         {/* Entries List */}
-        <div className="bg-white rounded-xl shadow-md p-6">
-          <h3 className="text-xl font-bold mb-4">Recent Entries</h3>
-          <p className="text-gray-500">No entries yet. Click the pen icon to start writing!</p>
-        </div>
+        {loading ? (
+            <div className="text-center py-12">
+                <p className="text-gray-500">Loading entries...</p>
+            </div>
+        ) : (
+            <EntryList entries={entries} onEntryClick={handleEntryClick} />
+        )}
       </main>
 
       {/* Floating Action Button */}
