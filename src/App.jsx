@@ -4,6 +4,7 @@ import { EntriesProvider } from "./contexts/EntriesContext";
 import Home from './pages/Home';
 import Journal from './pages/Journal';
 import Editor from "./pages/Editor";
+import EntryDetail from "./pages/EntryDetail";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/journal" element={<Journal />} />
-            <Route path="/editor/:id" element={<Editor />} />
+            <Route path="/editor/:id?" element={<Editor />} />
+            <Route path="/entry/:id" element={<EntryDetail />} />
           </Routes>
         </Router>
       </EntriesProvider>
