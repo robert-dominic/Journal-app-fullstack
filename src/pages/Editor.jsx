@@ -17,20 +17,20 @@ export default function Editor() {
     const [isSaving, setIsSaving] = useState(false)
     const [isEditMode, setIsEditMode] = useState(false)
 
-    // Load entry data if editing 
+    // Load entry data if editing
     useEffect(() => {
         if (id) {
-            const entry = getEntry(id)
-            if (entry) {
-                setTitle(entry.title)
-                setContent(entry.content)
-                setDate(new Date(entry.created_at).toISOString().split('T')[0])
-                setIsEditMode(true)
-            }
-        } else {
-            // Entry not found, redirect to journal
+          const entry = getEntry(id)
+          if (entry) {
+            setTitle(entry.title)
+            setContent(entry.content)
+            setDate(new Date(entry.created_at).toISOString().split('T')[0])
+            setIsEditMode(true)
+          } else {
+            // Entry not found 
             alert('Entry not found')
             navigate('/journal')
+          }
         }
     }, [id])
 
