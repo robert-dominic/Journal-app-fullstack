@@ -17,7 +17,7 @@ export default function EntryDetail() {
       alert('Entry not found')
       navigate('/journal')
     }
-  }, [id])
+  }, [id, getEntry, navigate])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)
@@ -41,6 +41,7 @@ export default function EntryDetail() {
       await deleteEntry(id)
       navigate('/journal')
     } catch (error) {
+      console.error('Failed to delete entry:', error)
       alert('Failed to delete entry')
     }
   }
