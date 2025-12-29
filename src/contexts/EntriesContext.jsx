@@ -14,13 +14,15 @@ export const useEntries = () => {
 }
 
 export const EntriesProvider = ({ children }) => {
-  const { user } = useAuth()
+  const { user, loading: authLoading } = useAuth()
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
   const [guestEntries, setGuestEntries] = useLocalStorage('guest_entries', [])
 
   // Fetch entries when user logs in
   useEffect(() => {
+    if (authLoading) return
+
     if (user) {
       fetchEntries()
     } else {
@@ -28,7 +30,7 @@ export const EntriesProvider = ({ children }) => {
       setEntries(guestEntries)
       setLoading(false)
     }
-  }, [user, guestEntries])
+  }, [user, authLoading, guestEntries])
 
   // Fetch entries from Supabase (for authenticated users)
   const fetchEntries = async () => {
