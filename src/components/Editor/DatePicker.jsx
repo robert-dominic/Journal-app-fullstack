@@ -11,7 +11,7 @@ export default function DatePicker({ value, onChange }) {
     }
 
     return (
-        <div className="flex items-center gap-2 mb-6 pb-6 border-b border-gray-200">
+        <div className="flex items-center gap-1 sm:gap-2 mb-6 pb-6 border-b border-gray-200">
             <Calendar className="text-gray-400" size={20}/>
             <input  
               type="date" 

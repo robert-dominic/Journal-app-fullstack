@@ -15,12 +15,13 @@ export default function EntryDetail() {
 
     const foundEntry = entries.find(e => e.id === id)
     if (foundEntry) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEntry(foundEntry)
     } else {
       alert('Entry not found')
       navigate('/journal')
     }
-  }, [id, loading, entries]) // Add entries to dependencies
+  }, [id, loading, entries, navigate]) // Add navigate to dependencies
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)
@@ -96,7 +97,7 @@ export default function EntryDetail() {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <article className="bg-white rounded-xl shadow-md p-8 sm:p-12">
           {/* Title */}
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">
+          <h1 className="text-[1.7rem] font-bold text-gray-900 mb-6">
             {entry.title}
           </h1>
 

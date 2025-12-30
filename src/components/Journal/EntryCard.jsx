@@ -49,7 +49,7 @@ export default function EntryCard({ entry, onClick, onEdit, onDelete }) {
       </div>
 
       <div className="flex items-start justify-between mb-3 pr-16">
-        <h3 className="text-xl font-bold text-gray-900 line-clamp-2">
+        <h3 className="text-[1.2rem] font-bold text-gray-900 line-clamp-2">
           {entry.title}
         </h3>
       </div>

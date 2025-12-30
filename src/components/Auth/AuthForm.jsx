@@ -24,6 +24,7 @@ export default function AuthForm({ onSuccess }) {
         await signIn(email, password)
       } else {
         await signUp(email, password)
+        alert('Check your email for the verification link!')
       }
       onSuccess()
     } catch (err) {

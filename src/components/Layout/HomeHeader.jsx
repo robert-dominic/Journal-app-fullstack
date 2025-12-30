@@ -8,7 +8,7 @@ export default function Header({ onSignIn }) {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="p-2 bg-orange-500 rounded-lg">
-              <BookOpen className="w-6 h-6 text-white" />
+              <BookOpen className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-gray-900">MyJournal</span>
           </div>
@@ -16,7 +16,7 @@ export default function Header({ onSignIn }) {
           {/* Sign In button */}
           <button
             onClick={onSignIn}
-            className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors active:scale-95"
+            className="px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors active:scale-95"
           >
             Sign In
           </button>

@@ -13,7 +13,7 @@ export default function JournalHeader() {
             {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="p-2 bg-orange-500 rounded-lg">
-                <BookOpen className="w-6 h-6 text-white" />
+                <BookOpen className="w-5 h-5 text-white" />
               </div>
                 <span className="text-xl font-bold text-gray-900">MyJournal</span>
             </div>

@@ -35,7 +35,7 @@ export default function Editor() {
             navigate('/journal')
         }
       }
-    }, [id, loading, entries]) // Add entries to dependencies
+    }, [id, loading, entries, navigate]) // Add entries to dependencies
 
     const hasChanges = title.trim() !== '' || content.trim() !== ''
 
