@@ -1,6 +1,6 @@
 import EntryCard from './EntryCard'
 
-export default function EntryList({ entries, onEntryClick, onEdit, onDelete }) {
+export default function EntryList({ entries, onEntryClick, onEdit }) {
   if (entries.length === 0) {
     return (
       <div className="text-center py-12">
@@ -19,7 +19,6 @@ export default function EntryList({ entries, onEntryClick, onEdit, onDelete }) {
           entry={entry}
           onClick={() => onEntryClick(entry)}
           onEdit={onEdit}
-          onDelete={onDelete}
         />
       ))}
     </div>

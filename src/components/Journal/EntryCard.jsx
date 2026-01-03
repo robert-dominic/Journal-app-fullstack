@@ -1,6 +1,11 @@
 import { Edit2, Trash2 } from 'lucide-react'
+import { useModal } from '../../contexts/ModalContext'
+import { useEntries } from '../../contexts/EntriesContext'
 
-export default function EntryCard({ entry, onClick, onEdit, onDelete }) {
+export default function EntryCard({ entry, onClick, onEdit }) {
+  const { showInfo, showDanger } = useModal()
+  const { deleteEntry } = useEntries()
+
   const formatDate = (dateString) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('en-US', { 
@@ -22,7 +27,22 @@ export default function EntryCard({ entry, onClick, onEdit, onDelete }) {
 
   const handleDelete = (e) => {
     e.stopPropagation() // Prevent card click
-    onDelete(entry)
+    
+    showDanger({
+      title: 'Delete Entry?',
+      message: `Are you sure you want to delete "${entry.title}"? This action cannot be undone.`,
+      onConfirm: async () => {
+        try {
+          await deleteEntry(entry.id)
+        } catch (error) {
+          console.error('Failed to delete entry:', error)
+          showInfo({
+            title: 'Failed to Delete',
+            message: 'This entry cannot be deleted at the moment. Try again'
+          })
+        }
+      }
+    })
   }
 
   return (
