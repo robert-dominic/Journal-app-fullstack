@@ -1,13 +1,22 @@
 import  { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useModal } from "../../contexts/ModalContext";
 
 export default function EditorHeader({ onSave, onCancel, isSaving, hasChanges}) {
     const navigate = useNavigate()
+    const { showInfo } = useModal()
 
     const handleCancel = () => {
         if (hasChanges) {
-            const confirmDiscard = window.confirm('You have unsaved changes. Are you sure you want to discard them?')
-            if (!confirmDiscard) return
+          // show InfoModal 
+          showInfo({
+            title: 'Unsaved Changes',
+            message: 'Are you sure you want to discard them?',
+            onConfirm: () => {
+              onCancel ? onCancel() : navigate('/journal');
+            }
+          });
+          return;
         }
         onCancel ? onCancel() : navigate('journal')
     }
@@ -23,7 +32,7 @@ export default function EditorHeader({ onSave, onCancel, isSaving, hasChanges}) 
                     >
                       <ArrowLeft size={20} />
                       <span className="sm:inline">Back</span>
-                      
+
                     </button>
 
                     {/* Action Buttons */}
